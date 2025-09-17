@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { EventModal } from "./event-modal"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { EventModal } from "./event-modal";
 
 const eventCategories = [
   { id: "todas", label: "TODAS AS FESTAS", active: true },
   { id: "casamento", label: "CASAMENTO", active: false },
   { id: "corporativo", label: "EVENTO CORPORATIVO", active: false },
-]
+];
 
 const events = [
   {
@@ -38,7 +38,7 @@ const events = [
       "Cerimônia íntima com decoração floral abundante e atmosfera romântica. O evento destacou-se pela elegância dos arranjos e pela atenção aos detalhes em cada elemento decorativo.",
     date: "8 de Outubro, 2023",
     guests: "120 convidados",
-    location: "Bar Jardim - Lucinha Cascão",
+    location: "Bar  - Lucinha Cascão",
     gallery: [
       "/floral-wedding-ceremony.png",
       "/wedding-celebration-setup.jpg",
@@ -72,7 +72,11 @@ const events = [
     date: "24 de Setembro, 2023",
     guests: "150 convidados",
     location: "Salão Cristóvão - Lucinha Cascão",
-    gallery: ["/wedding-reception-table-setup.jpg", "/elegant-wedding-decor.png", "/wedding-cake-display.jpg"],
+    gallery: [
+      "/wedding-reception-table-setup.jpg",
+      "/elegant-wedding-decor.png",
+      "/wedding-cake-display.jpg",
+    ],
   },
   {
     id: 5,
@@ -84,7 +88,11 @@ const events = [
     date: "17 de Setembro, 2023",
     guests: "175 convidados",
     location: "Salão Cristóvão - Lucinha Cascão",
-    gallery: ["/elegant-wedding-venue.png", "/wedding-celebration-setup.jpg", "/floral-wedding-ceremony.png"],
+    gallery: [
+      "/elegant-wedding-venue.png",
+      "/wedding-celebration-setup.jpg",
+      "/floral-wedding-ceremony.png",
+    ],
   },
   {
     id: 6,
@@ -95,8 +103,12 @@ const events = [
       "Setup especial para celebração com atmosfera acolhedora e decoração personalizada. Cada elemento foi escolhido para criar memórias duradouras.",
     date: "10 de Setembro, 2023",
     guests: "140 convidados",
-    location: "Bar Jardim - Lucinha Cascão",
-    gallery: ["/wedding-celebration-setup.jpg", "/elegant-wedding-cake-setup.jpg", "/wedding-table-arrangement.jpg"],
+    location: "Bar  - Lucinha Cascão",
+    gallery: [
+      "/wedding-celebration-setup.jpg",
+      "/elegant-wedding-cake-setup.jpg",
+      "/wedding-table-arrangement.jpg",
+    ],
   },
   {
     id: 7,
@@ -108,7 +120,11 @@ const events = [
     date: "3 de Setembro, 2023",
     guests: "160 convidados",
     location: "Salão Cristóvão - Lucinha Cascão",
-    gallery: ["/wedding-cake-display.jpg", "/elegant-wedding-decor.png", "/wedding-reception-table-setup.jpg"],
+    gallery: [
+      "/wedding-cake-display.jpg",
+      "/elegant-wedding-decor.png",
+      "/wedding-reception-table-setup.jpg",
+    ],
   },
   {
     id: 8,
@@ -120,7 +136,11 @@ const events = [
     date: "27 de Agosto, 2023",
     guests: "190 convidados",
     location: "Salão Cristóvão - Lucinha Cascão",
-    gallery: ["/elegant-wedding-decor.png", "/floral-wedding-ceremony.png", "/wedding-celebration-setup.jpg"],
+    gallery: [
+      "/elegant-wedding-decor.png",
+      "/floral-wedding-ceremony.png",
+      "/wedding-celebration-setup.jpg",
+    ],
   },
   {
     id: 9,
@@ -148,41 +168,53 @@ const events = [
     date: "Disponível sob consulta",
     guests: "Até 100 pessoas",
     location: "Eventoteca - Lucinha Cascão",
-    gallery: ["/corporate-event-space.png", "/elegant-wedding-venue.png", "/wedding-reception-table-setup.jpg"],
+    gallery: [
+      "/corporate-event-space.png",
+      "/elegant-wedding-venue.png",
+      "/wedding-reception-table-setup.jpg",
+    ],
   },
-]
+];
 
 export function EventsSection() {
-  const [activeCategory, setActiveCategory] = useState("todas")
-  const [selectedEvent, setSelectedEvent] = useState<(typeof events)[0] | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [activeCategory, setActiveCategory] = useState("todas");
+  const [selectedEvent, setSelectedEvent] = useState<(typeof events)[0] | null>(
+    null
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredEvents =
-    activeCategory === "todas" ? events : events.filter((event) => event.category === activeCategory)
+    activeCategory === "todas"
+      ? events
+      : events.filter((event) => event.category === activeCategory);
 
   const openEventModal = (event: (typeof events)[0]) => {
-    setSelectedEvent(event)
-    setIsModalOpen(true)
-  }
+    setSelectedEvent(event);
+    setIsModalOpen(true);
+  };
 
   const closeEventModal = () => {
-    setIsModalOpen(false)
-    setSelectedEvent(null)
-  }
+    setIsModalOpen(false);
+    setSelectedEvent(null);
+  };
 
   return (
     <>
       <section className="py-20 px-4 md:px-8 bg-primary text-white">
         <div className="max-w-7xl mx-auto">
           <div className="scroll-fade-in">
-            <h2 className="elegant-serif text-4xl md:text-5xl font-bold text-white mb-8">EVENTOS</h2>
+            <h2 className="elegant-serif text-4xl md:text-5xl font-bold text-white mb-8">
+              EVENTOS
+            </h2>
 
             {/* Category filters */}
             <div className="flex flex-wrap gap-4 mb-8 justify-end">
               {eventCategories.map((category) => (
                 <Button
                   key={category.id}
-                  variant={activeCategory === category.id ? "destructive" : "outline"}
+                  variant={
+                    activeCategory === category.id ? "destructive" : "outline"
+                  }
                   className={`px-6 py-2 text-sm font-medium transition-all ${
                     activeCategory === category.id
                       ? "bg-accent text-white hover:bg-accent/90"
@@ -197,14 +229,11 @@ export function EventsSection() {
 
             <div className="mb-12">
               <p className="text-white text-lg md:text-xl mb-4 max-w-4xl">
-                PALCO DE CÉLEBRES E INESQUECÍVEIS BANQUETES, OS SALÕES SECULARES DA LUCINHA CASCÃO ESTÃO ABERTOS PARA
-                ENTRAR TAMBÉM PARA A SUA HISTÓRIA: SEJA ELA UM EVENTO, UM CASAMENTO, UMA FESTA, UM ALMOÇO OU JANTAR.
+                PALCO DE CÉLEBRES E INESQUECÍVEIS BANQUETES,LUCINHA CASCÃO ESTÁ
+                ABERTA PARA ENTRAR TAMBÉM PARA A SUA HISTÓRIA: SEJA ELA UM
+                EVENTO, UM CASAMENTO, UMA FESTA, UM ALMOÇO OU JANTAR.
               </p>
-              <p className="text-white/80 text-base mb-8">
-                Dispomos de 3 salões refrigerados, Bar Jardim com capacidade de 150 pessoas, Cristóvão de 210 pessoas e
-                Espaço Memória para até 50 pessoas. Oferecemos também o mais requintado e saboroso serviço de buffet do
-                Rio de Janeiro.
-              </p>
+              <p className="text-white/80 text-base mb-8"></p>
 
               <Button className="bg-accent hover:bg-accent/90 text-white px-8 py-3 text-lg font-medium">
                 SOLICITE SEU ORÇAMENTO
@@ -228,7 +257,9 @@ export function EventsSection() {
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-white font-bold text-sm md:text-base">{event.title}</h3>
+                      <h3 className="text-white font-bold text-sm md:text-base">
+                        {event.title}
+                      </h3>
                     </div>
                   </div>
                 </div>
@@ -238,7 +269,11 @@ export function EventsSection() {
         </div>
       </section>
 
-      <EventModal event={selectedEvent} isOpen={isModalOpen} onClose={closeEventModal} />
+      <EventModal
+        event={selectedEvent}
+        isOpen={isModalOpen}
+        onClose={closeEventModal}
+      />
     </>
-  )
+  );
 }
